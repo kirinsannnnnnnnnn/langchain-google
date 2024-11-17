@@ -215,6 +215,8 @@ class _VertexAICommon(_VertexAIBase):
     model_name will be used to determine the model family
     """
 
+    audio_timestamp: Optional[bool] = None
+
     @property
     def _is_gemini_model(self) -> bool:
         return is_gemini_model(self.model_family)  # type: ignore[arg-type]
@@ -287,6 +289,8 @@ class _VertexAICommon(_VertexAIBase):
         params = {**self._default_params, "stop_sequences": stop_sequences, **params}
         if stream or self.streaming:
             params.pop("candidate_count")
+        if self.audio_timestamp is not None:
+            params["audio_timestamp"] = self.audio_timestamp
         return params
 
     def get_num_tokens(self, text: str) -> int:

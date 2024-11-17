@@ -146,8 +146,9 @@ _allowed_params = [
     "seed",
     "response_logprobs",
     "logprobs",
+    "audio_timestamp",
 ]
-_allowed_params_prediction_service = ["request", "timeout", "metadata"]
+_allowed_params_prediction_service = ["request", "timeout", "metadata", 'generation_config']
 
 
 @dataclass
